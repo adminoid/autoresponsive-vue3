@@ -2,30 +2,30 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
-const pkg = require('./package');
+// const pkg = require('./package');
 
-const isProduction = process.env.NODE_ENV === 'production';
+// const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: {
     homepage: path.join(__dirname, 'homepage'),
     examples: path.join(__dirname, 'examples'),
-    index: path.join(__dirname, 'src'),
+    index: path.join(__dirname, 'src')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist/',
     filename: '[name].js',
-    library:'[name]',
+    library: '[name]',
     libraryTarget: 'umd'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    },
+      'vue$': 'vue/dist/vue.runtime.esm-bundler.js'
+    }
   },
   module: {
     rules: [
@@ -76,6 +76,6 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    }),
+    })
   ]);
 }

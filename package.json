@@ -28,11 +28,12 @@
   "main": "dist",
   "repository": {
     "type": "git",
-    "url": "https://github.com/xudafeng/autoresponsive-vue.git"
+    "url": "https://github.com/adminoid/autoresponsive-vue.git"
   },
   "dependencies": {
     "autoresponsive-core": "^1.0.1",
-    "exenv": "^1.2.2"
+    "exenv": "^1.2.2",
+    "vue": "^3.2.41"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -66,8 +67,7 @@
     "macaca-wd": "^1.1.1",
     "marked": "^0.3.6",
     "style-loader": "^0.21.0",
-    "vue": "2",
-    "vue-loader": "^15.2.1",
+    "vue-loader": "^17.0.0",
     "vue-template-compiler": "^2.5.3",
     "webpack": "^4.10.0",
     "webpack-cli": "^3.0.1",

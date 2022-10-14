@@ -1,11 +1,8 @@
-import Vue from 'vue';
-import ForkeMeOnGithub from 'fork-me-on-github-vue';
+import { createApp, h } from 'vue';
 
 import App from './app.vue';
 
-Vue.use(ForkeMeOnGithub);
-
-new Vue({
+createApp({
   el: '#app',
-  render: h => h(App)
+  render: () => h(App)
 });

@@ -5,3 +5,4 @@ screenshots/
 reports/
 *.sw*
 *.un~
+.idea

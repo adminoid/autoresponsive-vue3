@@ -37,7 +37,7 @@ class AnimationManager {
   }
 
   css2Animation() {
-    var style = {};
+    const style = {};
     style[this.horizontalDirection] = `${this.position[0]}px`;
     style[this.verticalDirection] = `${this.position[1]}px`;
 
@@ -46,7 +46,7 @@ class AnimationManager {
   }
 
   css3Animation() {
-    var style = {};
+    const style = {};
 
     prefixes.map(prefix => {
       let x, y;

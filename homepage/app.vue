@@ -12,7 +12,7 @@
       </div>
       <div v-for="item in list">
         <markdown
-           :source="item"
+          :source="item"
         >
         </markdown>
       </div>

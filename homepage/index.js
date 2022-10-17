@@ -1,11 +1,5 @@
-import Vue from 'vue';
-import ForkeMeOnGithub from 'fork-me-on-github-vue';
-
+import { createApp } from 'vue';
+import Autoresponsive from '../src/autoresponsive';
 import App from './app.vue';
 
-Vue.use(ForkeMeOnGithub);
-
-new Vue({
-  el: '#app',
-  render: h => h(App)
-});
+createApp(App).use(Autoresponsive).mount('#app');

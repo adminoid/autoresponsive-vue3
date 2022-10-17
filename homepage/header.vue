@@ -9,15 +9,8 @@
           <div class="first">Magic</div>
           <p>Responsive Layout Library For Vue</p>
         </h1>
-        <iframe class="github-btn" :src="`//ghbtns.com/github-btn.html?user=xudafeng&repo=${pkg.name}&type=watch&count=true`" title="Star on GitHub"></iframe>
-        <a :href="`//www.npmjs.com/${pkg.name}`">
-          <span class="version">v{{pkg.version}}</span>
-        </a>
       </div>
     </div>
-    <Ribbon
-      v-bind="ribbon"
-    ></Ribbon>
   </header>
 </template>
 <script>
@@ -27,14 +20,7 @@ export default {
   name: 'customHeader',
   data() {
     return {
-      pkg,
-      ribbon: {
-        text: 'Fork me on GitHub',
-        linkUrl: pkg.repository.url,
-        fixed: true,
-        flat: true,
-        classPrefix: pkg.name
-      }
+      pkg
     };
   }
 };
@@ -122,9 +108,6 @@ header {
         font-size: 40px;
       }
     }
-  }
-  .autoresponsive-vue-ribbon {
-    display: none;
   }
   .github-btn {
     position: fixed!important;

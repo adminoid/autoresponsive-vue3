@@ -16,13 +16,9 @@
         <p class="a-more j_ALMore"></p>
       </a>
     </auto-responsive>
-    <Ribbon
-      v-bind="ribbon"
-    ></Ribbon>
   </div>
 </template>
 <script>
-import pkg from '../package';
 import Utils from '../homepage/utils';
 import AutoResponsive from '../src/autoresponsive.vue';
 
@@ -41,13 +37,6 @@ export default {
         itemClassName: 'item',
         gridWidth: 100,
         transitionDuration: '.5'
-      },
-      ribbon: {
-        text: 'Fork me on GitHub',
-        linkUrl: pkg.repository.url,
-        fixed: true,
-        flat: true,
-        classPrefix: pkg.name
       }
     };
   },

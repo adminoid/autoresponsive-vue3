@@ -1,4 +1,8 @@
-# autoresponsive-vue
+# autoresponsive-vue3
+
+---
+
+Copy of [xudafeng/autoresponsive-vue](https://github.com/xudafeng/autoresponsive-vue) adopted to Vue 3.x
 
 ---
 
@@ -29,7 +33,7 @@ Live demo & docs: [xudafeng.github.io/autoresponsive-vue](//xudafeng.github.io/a
 ## Installation
 
 ```bash
-$ npm i autoresponsive-vue --save-dev
+$ npm i autoresponsive-vue3 --save-dev
 ```
 
 ## Related Edition
@@ -40,18 +44,6 @@ $ npm i autoresponsive-vue --save-dev
 ## Contributing
 
 See our [CONTRIBUTING.md](./CONTRIBUTING.md) for information on how to contribute.
-
-<!-- GITCONTRIBUTOR_START -->
-
-## Contributors
-
-|[<img src="https://avatars.githubusercontent.com/u/1011681?v=4" width="100px;"/><br/><sub><b>xudafeng</b></sub>](https://github.com/xudafeng)<br/>|
-| :---: |
-
-
-This project follows the git-contributor [spec](https://github.com/xudafeng/git-contributor), auto updated at `Sat Nov 06 2021 23:13:31 GMT+0800`.
-
-<!-- GITCONTRIBUTOR_END -->
 
 ## License
 

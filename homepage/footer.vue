@@ -1,7 +1,7 @@
 <template>
   <footer class="text-center">
     <hr/>
-    &copy;&nbsp;<a href="//github.com/xudafeng">xdf</a> {{new Date().getFullYear()}}
+    &copy;&nbsp;<a href="//github.com/adminoid">adminoid</a> {{new Date().getFullYear()}}
   </footer>
 </template>
 <script>

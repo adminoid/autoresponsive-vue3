@@ -11,12 +11,10 @@
         </div>
       </div>
       <div v-for="item in list">
-        <pre>Before markdown</pre>
         <markdown
           :source="item"
         >
         </markdown>
-        <pre>After markdown</pre>
       </div>
     </article>
   </layout>

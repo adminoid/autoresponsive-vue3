@@ -6,7 +6,7 @@
 <script>
 import {
   GridSort
-} from 'autoresponsive-core';
+} from 'autoresponsive-core3';
 import pkg from '../package';
 import AnimationManager from './animation';
 

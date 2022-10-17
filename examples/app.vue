@@ -74,12 +74,11 @@ export default {
 }
 .albumPanel {
   position: relative;
-  font-family: "Microsoft Yahei", arial;
+  font-family: "Microsoft Yahei", arial, serif;
   font-size: 12px;
   line-height: 1.5;
   text-align: center;
-  margin: auto;
-  margin-top: 5px;
+  margin: 5px auto auto;
   padding-bottom: 60px;
 }
 .albumPanel .aP-hd {

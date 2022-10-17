@@ -7,7 +7,6 @@
 import {
   GridSort
 } from 'autoresponsive-core';
-
 import pkg from '../package';
 import AnimationManager from './animation';
 
@@ -111,11 +110,25 @@ export default {
 
       const container = this.$refs.container;
       const children = container.children;
-      const memoryNodeList = this.$slots.default.filter(i => i.tag);
 
-      for (var i = 0; i < children.length; i++) {
+      for (let i = 0; i < children.length; i++) {
         const node = children[i];
-        const style = memoryNodeList[i].data.normalizedStyle;
+        const canvas = node.__vnode.el;
+
+        let style = {};
+        switch (canvas.style.constructor.name) {
+          case 'CSS2Properties':
+            Object.values(canvas.style).forEach((prop) => {
+              style[prop] = canvas.style[prop];
+            });
+            break;
+          case 'CSSStyleDeclaration':
+            style = canvas.style;
+            break;
+          default:
+            console.error('Unknown style object prototype');
+            break;
+        }
 
         if (node.className &&
           this.itemClassName &&

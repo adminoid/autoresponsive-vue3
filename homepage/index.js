@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-
+import Autoresponsive from '../src/autoresponsive';
 import App from './app.vue';
 
-createApp(App).mount('#app');
+createApp(App).use(Autoresponsive).mount('#app');

@@ -2,6 +2,10 @@
 
 ---
 
+Copy of [xudafeng/autoresponsive-vue](https://github.com/xudafeng/autoresponsive-vue) adopted to Vue 3.x
+
+---
+
 Auto responsive grid layout library for [Vue](//github.com/vuejs/vue).
 
 [![NPM version][npm-image]][npm-url]
@@ -29,7 +33,7 @@ Live demo & docs: [xudafeng.github.io/autoresponsive-vue](//xudafeng.github.io/a
 ## Installation
 
 ```bash
-$ npm i autoresponsive-vue --save-dev
+$ npm i autoresponsive-vue3 --save-dev
 ```
 
 ## Related Edition

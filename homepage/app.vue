@@ -2,7 +2,7 @@
   <layout>
     <article class="container">
       <div :class="loadingClass">
-      {{ LoadingText }}
+        {{ LoadingText }}
       </div>
       <div class="i18n-buttons">
         <div class="btn-group pull-right">
@@ -11,10 +11,12 @@
         </div>
       </div>
       <div v-for="item in list">
+        <pre>Before markdown</pre>
         <markdown
           :source="item"
         >
         </markdown>
+        <pre>After markdown</pre>
       </div>
     </article>
   </layout>
@@ -133,8 +135,5 @@ export default {
 }
 .autoresponsive-vue-container {
   margin-top: 20px;
-}
-.autoresponsive-vue-ribbon a {
-  background-color: #2c3e50!important;
 }
 </style>

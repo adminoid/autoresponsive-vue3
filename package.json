@@ -7,8 +7,6 @@
     "responsive",
     "layout",
     "layout component",
-    "ui component",
-    "ui",
     "component"
   ],
   "files": [
@@ -75,5 +73,6 @@
     "hooks": {
       "pre-commit": "npm run lint"
     }
-  }
+  },
+  "license": "MIT"
 }

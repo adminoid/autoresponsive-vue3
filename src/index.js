@@ -1,7 +1,7 @@
-'use strict';
+import AutoResponsive from './autoresponsive.vue';
 
-const AutoResponsive = require('./autoresponsive.vue');
-
-export default (app) => {
-  app.component('AutoResponsive', AutoResponsive);
+export default {
+  install: app => {
+    app.component('auto-responsive', AutoResponsive);
+  }
 };

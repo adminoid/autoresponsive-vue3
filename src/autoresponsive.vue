@@ -3,174 +3,173 @@
     <slot></slot>
   </div>
 </template>
-<script>
+
+<script setup>
 import {
   GridSort
 } from 'autoresponsive-core3';
 import pkg from '../package';
 import AnimationManager from './animation';
+import {onBeforeMount, onMounted, onUpdated, ref} from "vue";
 
-export default {
-  name: 'auto-responsive',
-  props: {
-    containerWidth: {
-      type: Number,
-      default: null
-    },
-    containerHeight: {
-      type: Number,
-      default: null
-    },
-    gridWidth: {
-      type: Number,
-      default: 10
-    },
-    prefixClassName: {
-      type: String,
-      default: pkg.name
-    },
-    itemClassName: {
-      type: String,
-      default: 'item'
-    },
-    itemMargin: {
-      type: Number,
-      default: 0
-    },
-    horizontalDirection: {
-      type: String,
-      default: 'left'
-    },
-    transitionDuration: {
-      type: [String, Number],
-      default: 1
-    },
-    transitionTimingFunction: {
-      type: String,
-      default: 'linear'
-    },
-    verticalDirection: {
-      type: String,
-      default: 'top'
-    },
-    closeAnimation: {
-      type: Boolean,
-      default: false
-    },
-    onItemDidLayout: {
-      type: Function,
-      default: () => {}
-    },
-    onContainerDidLayout: {
-      type: Function,
-      default: () => {}
-    }
+const props = defineProps({
+  containerWidth: {
+    type: Number,
+    default: null
   },
-  computed: {
-    containerStyle() {
-      return {
-        position: 'relative'
-      };
-    }
+  containerHeight: {
+    type: Number,
+    default: null
   },
-  created() {
-    this.animationManager = new AnimationManager();
-    this.fixedContainerHeight = typeof this.containerHeight === 'number';
+  gridWidth: {
+    type: Number,
+    default: 10
   },
-  mounted() {
-    this.updateChildren();
+  prefixClassName: {
+    type: String,
+    default: pkg.name
   },
-  updated() {
-    this.updateChildren();
+  itemClassName: {
+    type: String,
+    default: 'item'
   },
-  methods: {
-    mixItemInlineStyle(s) {
-      const itemMargin = this.itemMargin;
-      let style = {
-        display: 'block',
-        float: 'left',
-        margin: `0 ${itemMargin}px ${itemMargin}px 0`
-      };
+  itemMargin: {
+    type: Number,
+    default: 0
+  },
+  horizontalDirection: {
+    type: String,
+    default: 'left'
+  },
+  transitionDuration: {
+    type: [String, Number],
+    default: 1
+  },
+  transitionTimingFunction: {
+    type: String,
+    default: 'linear'
+  },
+  verticalDirection: {
+    type: String,
+    default: 'top'
+  },
+  closeAnimation: {
+    type: Boolean,
+    default: false
+  },
+  onItemDidLayout: {
+    type: Function,
+    default: () => {}
+  },
+  onContainerDidLayout: {
+    type: Function,
+    default: () => {}
+  }
+});
 
-      if (this.containerWidth) {
-        style = {
-          position: 'absolute'
-        };
-      }
-      Object.assign(s, style);
-    },
-    updateChildren() {
-      this.sortManager = new GridSort({
-        containerWidth: this.containerWidth,
-        gridWidth: this.gridWidth
-      });
-      this.sortManager.init();
+const containerStyle = {
+  position: 'relative'
+};
 
-      let containerHeight = this.verticalDirection === 'bottom' || this.fixedContainerHeight ? this.containerHeight : 0;
+let animationManager, fixedContainerHeight;
+onBeforeMount(() => {
+  animationManager = new AnimationManager();
+  fixedContainerHeight = typeof props.containerHeight === 'number';
+})
 
-      const container = this.$refs.container;
-      const children = container.children;
+const mixItemInlineStyle = (s) => {
+  const itemMargin = props.itemMargin;
+  let style = {
+    display: 'block',
+    float: 'left',
+    margin: `0 ${itemMargin}px ${itemMargin}px 0`
+  };
 
-      for (let i = 0; i < children.length; i++) {
-        const node = children[i];
-        const canvas = node.__vnode.el;
+  if (props.containerWidth) {
+    style = {
+      position: 'absolute'
+    };
+  }
+  Object.assign(s, style);
+}
 
-        let style = {};
-        switch (canvas.style.constructor.name) {
-          case 'CSS2Properties':
-            Object.values(canvas.style).forEach((prop) => {
-              style[prop] = canvas.style[prop];
-            });
-            break;
-          case 'CSSStyleDeclaration':
-            style = canvas.style;
-            break;
-          default:
-            console.error('Unknown style object prototype');
-            break;
-        }
+const container = ref(null);
 
-        if (node.className &&
-          this.itemClassName &&
-          !~node.className.indexOf(this.itemClassName)) {
-          return;
-        }
+const updateChildren = () => {
+  const sortManager = new GridSort({
+    containerWidth: props.containerWidth,
+    gridWidth: props.gridWidth
+  });
+  sortManager.init();
 
-        const childWidth = parseInt(style.width, 10) + this.itemMargin;
-        const childHeight = parseInt(style.height, 10) + this.itemMargin;
-        const calculatedPosition = this.sortManager.getPosition(childWidth, childHeight);
+  let containerHeight = props.verticalDirection === 'bottom' || fixedContainerHeight ? props.containerHeight : 0;
 
-        if (this.fixedContainerHeight) {
-          container.style.height = `${containerHeight}px`;
-        } else {
-          if (calculatedPosition[1] + childHeight > containerHeight) {
-            containerHeight = calculatedPosition[1] + childHeight;
-            container.style.height = `${containerHeight}px`;
-          }
-        }
+  const children = container.value.children;
 
-        const options = Object.assign({}, this.$props, {
-          position: calculatedPosition,
-          size: {
-            width: childWidth,
-            height: childHeight
-          },
-          containerHeight: containerHeight
+  for (let i = 0; i < children.length; i++) {
+    const node = children[i];
+    const canvas = node.__vnode.el;
+
+    let style = {};
+    switch (canvas.style.constructor.name) {
+      case 'CSS2Properties':
+        Object.values(canvas.style).forEach((prop) => {
+          style[prop] = canvas.style[prop];
         });
+        break;
+      case 'CSSStyleDeclaration':
+        style = canvas.style;
+        break;
+    }
 
-        const calculatedStyle = this.animationManager.generate(options);
+    if (node.className &&
+        props.itemClassName &&
+        !~node.className.indexOf(props.itemClassName)) {
+      return;
+    }
 
-        this.mixItemInlineStyle(calculatedStyle);
+    const childWidth = parseInt(style.width, 10) + props.itemMargin;
+    const childHeight = parseInt(style.height, 10) + props.itemMargin;
+    const calculatedPosition = sortManager.getPosition(childWidth, childHeight);
 
-        Object.assign(node.style, calculatedStyle);
-
-        this.onItemDidLayout(node);
-
-        if (i + 1 === children.length) {
-          this.onContainerDidLayout();
-        }
+    if (fixedContainerHeight) {
+      container.value.style.height = `${containerHeight}px`;
+    } else {
+      if (calculatedPosition[1] + childHeight > containerHeight) {
+        containerHeight = calculatedPosition[1] + childHeight;
+        container.value.style.height = `${containerHeight}px`;
       }
+    }
+
+    const options = Object.assign({}, props, {
+      position: calculatedPosition,
+      size: {
+        width: childWidth,
+        height: childHeight
+      },
+      containerHeight: containerHeight
+    });
+
+    const calculatedStyle = animationManager.generate(options);
+
+    mixItemInlineStyle(calculatedStyle);
+
+    Object.assign(node.style, calculatedStyle);
+
+    props.onItemDidLayout(node);
+
+    if (i + 1 === children.length) {
+      props.onContainerDidLayout();
     }
   }
-};
+}
+
+onMounted(() => {
+  updateChildren();
+})
+
+onUpdated(() => {
+  updateChildren();
+})
+
 </script>
